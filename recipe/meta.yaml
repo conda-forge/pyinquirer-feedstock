@@ -1,5 +1,5 @@
 {% set name = "PyInquirer" %}
-{% set version = "1.0.2" %}
+{% set version = "1.0.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 24297de0dea639d8427447753d9e4c7e584e0fdb048bf61703de9ff1f28394b2
+  sha256: c9a92d68d7727fbd886a7908c08fd9e9773e5dc211bf5cbf836ba90d366dee51
 
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -34,7 +34,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'PyInquirer is a collection of common interactive command line user interfaces.'
+  summary: PyInquirer is a collection of common interactive command line user interfaces.
 
   description: |
     PyInquirer is a collection of common interactive command line user interfaces.
