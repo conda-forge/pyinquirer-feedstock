@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: c9a92d68d7727fbd886a7908c08fd9e9773e5dc211bf5cbf836ba90d366dee51
 
 
@@ -17,10 +17,11 @@ build:
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
+    - setuptools
     - pip
   run:
-    - python
+    - python >={{ python_min }}
     - prompt_toolkit ==1.0.14
     - Pygments >=2.2.0
     - regex >=2016.11.21
@@ -28,6 +29,11 @@ requirements:
 test:
   imports:
     - PyInquirer
+  requires:
+    - pip
+    - python {{ python_min }}
+  commands:
+    - pip check
 
 about:
   home: https://github.com/CITGuru/PyInquirer
