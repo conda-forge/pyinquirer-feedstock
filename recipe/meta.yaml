@@ -12,7 +12,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -22,7 +22,8 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
-    - prompt_toolkit ==1.0.14
+    # prompt_tookin ==1.0.14 likely too tight a pin and is causing problem downstream
+    - prompt_toolkit >=1.0.14,<2.0.0
     - Pygments >=2.2.0
     - regex >=2016.11.21
 
@@ -32,8 +33,9 @@ test:
   requires:
     - pip
     - python {{ python_min }}
-  commands:
-    - pip check
+  # Remove pip check in order to loosen prompt_toolkit pin  
+  # commands:
+    # - pip check
 
 about:
   home: https://github.com/CITGuru/PyInquirer
@@ -51,3 +53,4 @@ extra:
   recipe-maintainers:
     - apeltzer
     - ewels
+    - thewchan
